@@ -1,0 +1,1 @@
+{"version":3,"file":"checkings-account.d.ts","sourceRoot":"","sources":["../../src/models/checkings-account.ts"],"names":[],"mappings":"AAAA,OAAO,OAAO,MAAM,WAAW,CAAC;AAEhC,MAAM,CAAC,OAAO,OAAO,gBAAiB,SAAQ,OAAO;IAClD,OAAO,CAAC,cAAc,CAAe;IAIrC,OAAO,CAAC,oBAAoB;IAInB,QAAQ,CAAC,MAAM,EAAE,MAAM,GAAG,IAAI;CAMzC"}

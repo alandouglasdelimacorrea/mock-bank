@@ -1,0 +1,1 @@
+{"version":3,"file":"savings-account.d.ts","sourceRoot":"","sources":["../../src/models/savings-account.ts"],"names":[],"mappings":"AAAA,OAAO,OAAO,MAAM,WAAW,CAAC;AAEhC,MAAM,CAAC,OAAO,OAAO,cAAe,SAAQ,OAAO;IAChD,OAAO,CAAC,YAAY,CAAe;IAE5B,qBAAqB,CAAC,MAAM,EAAE,MAAM,GAAG,IAAI;CAKpD"}

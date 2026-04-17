@@ -1,0 +1,1 @@
+{"version":3,"file":"payment-alias.d.ts","sourceRoot":"","sources":["../../src/models/payment-alias.ts"],"names":[],"mappings":"AAAA,MAAM,CAAC,OAAO,OAAO,YAAY;IAC9B,OAAO,CAAC,IAAI,CAAsC;IAClD,OAAO,CAAC,GAAG,CAAS;gBAER,IAAI,EAAE,KAAK,GAAG,OAAO,GAAG,QAAQ,GAAG,MAAM,EAAE,GAAG,EAAE,MAAM;CAIpE"}
