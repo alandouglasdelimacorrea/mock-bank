@@ -1,8 +1,10 @@
+import { AccountType } from "../enums/account-type.enum";
+
 export default class PaymentAlias {
-   private type: 'cpf' | 'phone' | 'random' | 'cnpj';
+   private type: AccountType;
    private key: string;
 
-   constructor(type: 'cpf' | 'phone' | 'random' | 'cnpj', key: string){
+   constructor(type: AccountType, key: string){
       this.type = type;
       this.key = key;
    }

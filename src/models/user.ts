@@ -1,13 +1,9 @@
-export default class User {
-   private name: string;
-   private email: string;
-   private cpf: string;
-   private password: string;
+import { IUser } from "../interfaces/IUser";
 
-   constructor(name: string, email: string, cpf: string, password: string){
-      this.name = name;
-      this.email = email;
-      this.cpf = cpf;
-      this.password = password;
+export default class User {
+   private user: IUser;
+
+   constructor(user: IUser){
+      this.user = user;
    }
 }
