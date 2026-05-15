@@ -13,7 +13,6 @@ export default class Ledger {
         let balance: number = 0;
         this.globalHistory.forEach( tr => {
             const registries: Registry[] = tr.getRegistries();
-            registries.
         } )
 
         return balance
