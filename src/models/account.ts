@@ -1,3 +1,4 @@
+import Utils from "../shared/utils";
 import PaymentAlias from "./payment-alias";
 import User from "./user";
 
@@ -8,30 +9,30 @@ export default class Account {
    private paymentAlias: PaymentAlias[] = [];
 
    constructor(user: User){
-      this.accountNumber = this.generateAccountNumber();
+      this.accountNumber = Utils.generateId();
       this.balance = 0;
       this.user = user;
    }
 
-   public deposit(amount: number): void {
-      this.balance += amount;
-   }
+   // public deposit(amount: number): void {
+   //    this.balance += amount;
+   // }
 
    public addPaymentAlias(alias: PaymentAlias): void {
       this.paymentAlias.push(alias);
    }
 
-   private generateAccountNumber(): string {
-      return Math.random().toString(36).substring(2, 11);
-   }
+   // private generateAccountNumber(): string {
+   //    return Math.random().toString(36).substring(2, 11);
+   // }
 
-   public getBalance(): number {
-      return this.balance;
-   }
+   // public getBalance(): number {
+   //    return this.balance;
+   // }
 
-   public withdraw(amount: number): void {
-      this.balance -= amount;
-   }
+   // public withdraw(amount: number): void {
+   //    this.balance -= amount;
+   // }
 
    
 

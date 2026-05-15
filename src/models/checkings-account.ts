@@ -9,10 +9,10 @@ export default class CheckingsAccount extends Account {
       this.overdraftLimit -= amount;
    }
 
-   override withdraw(amount: number): void {
-      if(this.overdraftLimit < amount) return;
+   // override withdraw(amount: number): void {
+   //    if(this.overdraftLimit < amount) return;
       
-      this.balance -= amount;
-      this.updateOverdraftLimit(amount);
-   }
+   //    this.balance -= amount;
+   //    this.updateOverdraftLimit(amount);
+   // }
 }
