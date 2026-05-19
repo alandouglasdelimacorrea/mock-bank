@@ -1,38 +1,50 @@
-import { TransactionType } from "../enums/transaction-type.enum";
-import { IRegistry } from "../interfaces/IRegistry";
+import { TransactionStatus } from "../enums/transaction-status";
 import Utils from "../shared/utils";
 import Registry from "./registry";
 
 export default class Transaction {
 
-   private id: string;
-   private date: Date;
-   private description: string;
+   private readonly id: string;
+   private readonly date: Date;
    private registries: Registry[] = [];
+   private status: TransactionStatus;
    
-   constructor(date: Date, description: string){
+   constructor(){
       this.id = Utils.generateId();
       this.date = new Date();
-      this.description = description;
+      this.status = TransactionStatus.PENDING
    }
 
-   public addRegistry(accountId: string, value: number, type: TransactionType){
-      const registryI: IRegistry = {
-         id: Utils.generateId(),
-         accountId,
-         transactionId: this.id,
-         type,
-         value
+   public addRegistry(registry: Registry): void{
+      if(this.status !== TransactionStatus.PENDING){
+         throw new Error("Apenas transações pendentes podem receber novos registros.");
       }
-      const registry: Registry = new Registry(registryI);
-      this.registries.push(registry); 
+
+      this.registries.push(registry);
    }
 
    public getId(): string {
-      return this.id
+      return this.id;
    }
 
-   public getRegistries(): Registry[] {
-      return this.registries
+   public getRegistries(): ReadonlyArray<Registry> {
+      return this.registries;
    }
+
+   public isValid(): boolean{
+      if (this.registries.length < 2) return false;
+
+      const sum = this.registries.reduce((acc, curr) => acc + curr.getValue(), 0);
+      return sum === 0;
+   }
+
+   public commit(): void {
+      this.status = TransactionStatus.COMMITED;
+   }
+
+   public fail(): void {
+      this.status = TransactionStatus.FAILED;
+   }
+
+
 }
