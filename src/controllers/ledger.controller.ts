@@ -1,57 +1,33 @@
 import Database from "../database";
-import Account from "../models/account";
-import Registry from "../models/registry";
 import Transaction from "../models/transaction";
 import User from "../models/user";
+import LedgerService from "../services/ledger.service";
 
 export default class LedgerController {
-    constructor(private store: Database){}
+    constructor(private store: Database, private ledgerService: LedgerService){}
 
-    public createAccount(user: User): string {
-        const account = new Account(user);
-        this.store.saveAccount(account);
-        return account.getId();
+    public createAccount(user: User, type: string): string {
+        return this.ledgerService.save(user, type);
     }
 
     public transfer(fromAccountId: string, toAccountId: string, amountInCents: number): Transaction {
         if (amountInCents <= 0) {
-            throw new Error("Transfer amount must be greater than zero.");
+            throw new Error("Quantidade da transferência deve ser maior que zero");
         }
 
         const fromAccount = this.store.getAccount(fromAccountId);
         const toAccount = this.store.getAccount(toAccountId);
 
         if (!fromAccount || !toAccount) {
-            throw new Error("One or both accounts do not exist.");
+            throw new Error("Uma ou ambas as contas não existem");
         }
 
         if (fromAccount.getBalance() < amountInCents) {
-            throw new Error("Insufficient funds.");
+            throw new Error("Saldo insuficiente");
         }
 
-        const transaction = new Transaction();
+        const transaction = this.ledgerService.transfer(fromAccount, toAccount, amountInCents);
         
-        const debit = new Registry(fromAccountId, -amountInCents, "Transfer Out");
-        const credit = new Registry(toAccountId, amountInCents, "Transfer In");
-
-        transaction.addRegistry(debit);
-        transaction.addRegistry(credit);
-
-        if (!transaction.isValid()) {
-            transaction.fail();
-            this.store.saveTransaction(transaction);
-            throw new Error("Transaction is imbalanced. Aborting.");
-        }
-
-        fromAccount.debit(amountInCents);
-        toAccount.credit(amountInCents);
-        
-        transaction.commit();
-        
-        this.store.saveAccount(fromAccount);
-        this.store.saveAccount(toAccount);
-        this.store.saveTransaction(transaction);
-
         return transaction;
     }
 }
