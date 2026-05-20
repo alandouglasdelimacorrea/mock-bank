@@ -3,7 +3,7 @@ import PaymentAlias from "./payment-alias";
 import User from "./user";
 
 export default abstract class Account {
-    private id: string;
+    private readonly id: string;
     private user: User;
     protected balance: number;
     protected paymentAlias: PaymentAlias[] = [];

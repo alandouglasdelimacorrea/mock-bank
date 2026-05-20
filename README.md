@@ -30,3 +30,6 @@ src/
  ├── services/       # Lógica de negócio e regras bancárias
  ├── database.ts     # Simulação de persistência de dados/banco em memória
  └── main.ts         # Ponto de entrada da aplicação
+
+## TO-DO
+- Ajustar nomenclatura de tudo que envolve dinheiro para deixar claro que é em centavos (por razão de conversão em float ou algo assim). Pesquisar melhor sobre validade dessa alteração.
