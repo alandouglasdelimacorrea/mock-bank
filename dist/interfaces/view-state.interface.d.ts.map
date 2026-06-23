@@ -1,0 +1,1 @@
+{"version":3,"file":"view-state.interface.d.ts","sourceRoot":"","sources":["../../src/interfaces/view-state.interface.ts"],"names":[],"mappings":"AAAA,OAAO,aAAa,MAAM,+BAA+B,CAAC;AAE1D,MAAM,WAAW,SAAS;IACxB,OAAO,CAAC,OAAO,EAAE,aAAa,GAAG,OAAO,CAAC,SAAS,GAAG,IAAI,CAAC,CAAC;CAC5D"}

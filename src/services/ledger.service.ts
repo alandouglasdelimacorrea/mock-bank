@@ -1,10 +1,11 @@
 import Database from "../database";
 import Account from "../models/account";
 import CheckingsAccount from "../models/checkings-account";
-import Registry from "../models/registry";
-import SavingsAccount from "../models/savings-account";
 import Transaction from "../models/transaction";
+import SavingsAccount from "../models/savings-account";
+import Ledger from "../models/ledger";
 import User from "../models/user";
+import { TransferOperationError } from "../errors/transfer-operation.error";
 
 export default class LedgerService {
     
@@ -23,31 +24,31 @@ export default class LedgerService {
         throw new Error("Tipo de conta inválida");
     }
 
-    public transfer(fromAccount: Account, toAccount: Account, amountInCents: number): Transaction {
-        const transaction = new Transaction();
+    public transfer(fromAccount: Account, toAccount: Account, amountInCents: number): Ledger {
+        const ledger = new Ledger();
         
-        const debit = new Registry(fromAccount.getId(), -amountInCents, "Transferindo de");
-        const credit = new Registry(toAccount.getId(), amountInCents, "Transferindo para");
+        const debit = new Transaction(fromAccount.getId(), -amountInCents, "Transferindo de");
+        const credit = new Transaction(toAccount.getId(), amountInCents, "Transferindo para");
 
-        transaction.addRegistry(debit);
-        transaction.addRegistry(credit);
+        ledger.addRegistry(debit);
+        ledger.addRegistry(credit);
 
-        if (!transaction.isValid()) {
-            transaction.fail();
-            this.store.saveTransaction(transaction);
-            throw new Error("Crédito e débito não igualam a zero. Abortando operação");
+        if (!ledger.isValid()) {
+            ledger.fail();
+            this.store.saveLedger(ledger);
+            throw new TransferOperationError("Crédito e débito não igualam a zero. Abortando operação", "transfer - LedgerService");
         }
 
         fromAccount.debit(amountInCents);
         toAccount.credit(amountInCents);
         
-        transaction.commit();
+        ledger.commit();
         
         this.store.saveAccount(fromAccount);
         this.store.saveAccount(toAccount);
-        this.store.saveTransaction(transaction);
+        this.store.saveLedger(ledger);
 
-        return transaction;
+        return ledger;
     }
 
         

@@ -1,15 +1,16 @@
 import PaymentAlias from "./payment-alias";
 import User from "./user";
-export default class Account {
-    private accountNumber;
+export default abstract class Account {
+    protected readonly id: string;
+    protected user: User;
     protected balance: number;
-    private user;
-    private paymentAlias;
+    protected paymentAlias: PaymentAlias[];
     constructor(user: User);
-    deposit(amount: number): void;
-    addPaymentAlias(alias: PaymentAlias): void;
-    private generateAccountNumber;
-    getBalance(): number;
-    withdraw(amount: number): void;
+    abstract getId(): string;
+    abstract getBalance(): number;
+    abstract debit(amountInCents: number): void;
+    abstract credit(amountInCents: number): void;
+    abstract addPaymentAlias(alias: PaymentAlias): void;
+    abstract getAccountDetails(): string;
 }
 //# sourceMappingURL=account.d.ts.map

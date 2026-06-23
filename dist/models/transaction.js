@@ -1,13 +1,18 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const utils_1 = __importDefault(require("../shared/utils"));
 class Transaction {
-    constructor(amount, description, fromAccount, toAccount, type) {
-        this.amount = amount;
+    constructor(accountId, value, description) {
+        this.id = utils_1.default.generateId();
+        this.accountId = accountId;
+        this.value = value;
         this.description = description;
-        this.fromAccount = fromAccount;
-        this.toAccount = toAccount;
-        this.type = type;
-        this.date = new Date().getDate();
+    }
+    getValue() {
+        return this.value;
     }
 }
 exports.default = Transaction;

@@ -15,7 +15,7 @@ export default class CheckingsAccount extends Account {
    // }
 
    public getId(): string{
-      return this.getId();
+      return this.id;
    }
 
    public getBalance(): number {
@@ -41,5 +41,9 @@ export default class CheckingsAccount extends Account {
 
    public addPaymentAlias(alias: PaymentAlias): void {
       this.paymentAlias.push(alias);
+   }
+
+   public getAccountDetails(): string {
+      return `Conta Corrente - ID: ${this.id}, Saldo: ${this.balance}, Limite de Cheque Especial: ${this.overdraftLimit}, Nome: ${this.user.getName()}, Email: ${this.user.getEmail()}`;
    }
 }

@@ -1,5 +1,5 @@
 import Database from "../database";
-import Transaction from "../models/transaction";
+import Ledger from "../models/ledger";
 import User from "../models/user";
 import LedgerService from "../services/ledger.service";
 
@@ -10,7 +10,7 @@ export default class LedgerController {
         return this.ledgerService.save(user, type);
     }
 
-    public transfer(fromAccountId: string, toAccountId: string, amountInCents: number): Transaction {
+    public transfer(fromAccountId: string, toAccountId: string, amountInCents: number): Ledger {
         if (amountInCents <= 0) {
             throw new Error("Quantidade da transferência deve ser maior que zero");
         }
@@ -26,8 +26,8 @@ export default class LedgerController {
             throw new Error("Saldo insuficiente");
         }
 
-        const transaction = this.ledgerService.transfer(fromAccount, toAccount, amountInCents);
+        const ledger = this.ledgerService.transfer(fromAccount, toAccount, amountInCents);
         
-        return transaction;
+        return ledger;
     }
 }

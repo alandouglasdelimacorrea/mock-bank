@@ -1,50 +1,21 @@
-import { TransactionStatus } from "../enums/transaction-status";
-import Utils from "../shared/utils";
-import Registry from "./registry";
+import Utils from "../shared/utils"
 
 export default class Transaction {
+    private readonly id: string
+    private readonly accountId: string
+    private readonly value: number
+    private description: string
 
-   private readonly id: string;
-   private readonly date: Date;
-   private registries: Registry[] = [];
-   private status: TransactionStatus;
-   
-   constructor(){
-      this.id = Utils.generateId();
-      this.date = new Date();
-      this.status = TransactionStatus.PENDING
-   }
+    constructor(accountId: string, value: number, description: string){
+        this.id = Utils.generateId();
+        this.accountId = accountId;
+        this.value = value;
+        this.description = description;
+    }
 
-   public addRegistry(registry: Registry): void{
-      if(this.status !== TransactionStatus.PENDING){
-         throw new Error("Apenas transações pendentes podem receber novos registros.");
-      }
+    public getValue(): number {
+        return this.value;
+    }
 
-      this.registries.push(registry);
-   }
-
-   public getId(): string {
-      return this.id;
-   }
-
-   public getRegistries(): ReadonlyArray<Registry> {
-      return this.registries;
-   }
-
-   public isValid(): boolean{
-      if (this.registries.length < 2) return false;
-
-      const sum = this.registries.reduce((acc, curr) => acc + curr.getValue(), 0);
-      return sum === 0;
-   }
-
-   public commit(): void {
-      this.status = TransactionStatus.COMMITED;
-   }
-
-   public fail(): void {
-      this.status = TransactionStatus.FAILED;
-   }
-
-
+    
 }

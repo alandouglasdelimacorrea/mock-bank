@@ -1,11 +1,9 @@
-import Account from "./account";
 export default class Transaction {
-    private amount;
-    private date;
+    private readonly id;
+    private readonly accountId;
+    private readonly value;
     private description;
-    private fromAccount;
-    private toAccount;
-    private type;
-    constructor(amount: number, description: string, fromAccount: Account, toAccount: Account | null, type: 'deposit' | 'withdraw' | 'transfer');
+    constructor(accountId: string, value: number, description: string);
+    getValue(): number;
 }
 //# sourceMappingURL=transaction.d.ts.map

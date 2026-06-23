@@ -9,15 +9,38 @@ class CheckingsAccount extends account_1.default {
         super(...arguments);
         this.overdraftLimit = 100;
     }
+    super(user) { }
+    ;
     //fazer lógica de poder sacar usando o overdraftlimit
-    updateOverdraftLimit(amount) {
-        this.overdraftLimit -= amount;
+    // private updateOverdraftLimit(amount: number): void{
+    //    this.overdraftLimit -= amount;
+    // }
+    getId() {
+        return this.id;
     }
-    withdraw(amount) {
-        if (this.overdraftLimit < amount)
-            return;
-        this.balance -= amount;
-        this.updateOverdraftLimit(amount);
+    getBalance() {
+        return this.balance;
+    }
+    debit(amountInCents) {
+        if (amountInCents <= 0) {
+            throw new Error("Debite um numero maior que zero.");
+        }
+        if (this.balance < amountInCents) {
+            throw new Error("Saldo insuficiente");
+        }
+        this.balance -= amountInCents;
+    }
+    credit(amountInCents) {
+        if (amountInCents <= 0) {
+            throw new Error("Crédito deve ser maior que zero");
+        }
+        this.balance += amountInCents;
+    }
+    addPaymentAlias(alias) {
+        this.paymentAlias.push(alias);
+    }
+    getAccountDetails() {
+        return `Conta Corrente - ID: ${this.id}, Saldo: ${this.balance}, Limite de Cheque Especial: ${this.overdraftLimit}, Nome: ${this.user.getName()}, Email: ${this.user.getEmail()}`;
     }
 }
 exports.default = CheckingsAccount;

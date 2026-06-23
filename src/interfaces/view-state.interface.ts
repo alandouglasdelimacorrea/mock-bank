@@ -1,5 +1,5 @@
-import AppContext from "../models/app-context";
+import AppController from "../controllers/app.controller";
 
-export interface Router {
-  execute(context: AppContext): Promise<Router | null>;
+export interface ViewState {
+  execute(context: AppController): Promise<ViewState | null>;
 }

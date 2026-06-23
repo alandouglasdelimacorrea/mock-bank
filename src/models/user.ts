@@ -6,4 +6,12 @@ export default class User {
    constructor(user: IUser){
       this.user = user;
    }
+
+   public getName(): string {
+      return this.user.name;
+   }
+
+   public getEmail(): string {
+      return this.user.email;
+   }
 }

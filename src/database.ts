@@ -1,9 +1,9 @@
 import Account from "./models/account";
-import Transaction from "./models/transaction";
+import Ledger from "./models/ledger";
 
 export default class Database {
    private accounts: Map<string, Account> = new Map();
-   private transactions: Map<string, Transaction> = new Map();
+   private ledger: Map<string, Ledger> = new Map();
 
    public saveAccount(account: Account): void {
       this.accounts.set(account.getId(), account);
@@ -13,12 +13,16 @@ export default class Database {
       return this.accounts.get(id);
    }
 
-   public saveTransaction(transaction: Transaction): void{
-      this.transactions.set(transaction.getId(), transaction);
+   public getAccounts(): Account[] | undefined{
+      return Array.from(this.accounts.values())
    }
 
-   public getAllTransactions(): Transaction[]{
-      return Array.from(this.transactions.values());
+   public saveLedger(ledger: Ledger): void{
+      this.ledger.set(ledger.getId(), ledger);
+   }
+
+   public getAllTransactions(): Ledger[]{
+      return Array.from(this.ledger.values());
    }
 
 }

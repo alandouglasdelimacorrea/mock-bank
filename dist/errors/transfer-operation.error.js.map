@@ -1,0 +1,1 @@
+{"version":3,"file":"transfer-operation.error.js","sourceRoot":"","sources":["../../src/errors/transfer-operation.error.ts"],"names":[],"mappings":";;;AAAA,MAAa,sBAAuB,SAAQ,KAAK;IAI7C,YAAY,OAAe,EAAE,KAAa;QACtC,KAAK,CAAC,OAAO,CAAC,CAAA;QAEd,IAAI,CAAC,IAAI,GAAG,wBAAwB,CAAA;QACpC,IAAI,CAAC,KAAK,GAAG,KAAK,CAAA;IACtB,CAAC;CACJ;AAVD,wDAUC"}

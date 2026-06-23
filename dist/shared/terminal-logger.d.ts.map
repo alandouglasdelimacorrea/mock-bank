@@ -1,0 +1,1 @@
+{"version":3,"file":"terminal-logger.d.ts","sourceRoot":"","sources":["../../src/shared/terminal-logger.ts"],"names":[],"mappings":"AAAA,qBAAa,cAAc;IAClB,GAAG,CAAC,OAAO,EAAE,MAAM,GAAG,IAAI;IAE1B,GAAG,CAAC,OAAO,EAAE,MAAM,EAAE,MAAM,EAAE,SAAS,GAAG,OAAO,GAAG,MAAM,GAAG,IAAI;CAgBxE"}

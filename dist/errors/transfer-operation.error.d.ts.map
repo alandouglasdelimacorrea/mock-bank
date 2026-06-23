@@ -1,0 +1,1 @@
+{"version":3,"file":"transfer-operation.error.d.ts","sourceRoot":"","sources":["../../src/errors/transfer-operation.error.ts"],"names":[],"mappings":"AAAA,qBAAa,sBAAuB,SAAQ,KAAK;IAE7C,OAAO,CAAC,KAAK,CAAQ;gBAET,OAAO,EAAE,MAAM,EAAE,KAAK,EAAE,MAAM;CAM7C"}

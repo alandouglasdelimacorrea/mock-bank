@@ -5,10 +5,12 @@ import User from "./user";
 export default class SavingsAccount extends Account {
    private interestRate: number = 0.1;
    
-   super(user: User){};
-   
+   constructor(user: User){
+      super(user);
+   }
+
    public getId(): string{
-      return this.getId();
+      return this.id;
    }
 
    public getBalance(): number {
@@ -34,6 +36,10 @@ export default class SavingsAccount extends Account {
 
    public addPaymentAlias(alias: PaymentAlias): void {
       this.paymentAlias.push(alias);
+   }
+
+   public getAccountDetails(): string {
+      return `Conta Poupança - ID: ${this.id}, Saldo: ${this.balance}, Taxa de Juros: ${this.interestRate}, Nome: ${this.user.getName()}, Email: ${this.user.getEmail()}`;
    }
 
 
